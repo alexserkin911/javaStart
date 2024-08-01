@@ -2,7 +2,7 @@ package homework1;
 
 public class Homework1 {
 
-    public static void print(){
+    public static void print() {
 
         byte b = 127; // -128 - 127
         short s = 32767; //- 32768 - 32767
@@ -16,24 +16,35 @@ public class Homework1 {
         System.out.println(f + " " + d);
     }
 
-    public static int calculating(int a, int b, int c, int d){
+    public static int calculating(int a, int b, int c, int d) {
 
-        return a *(b + (c / d));
+        return a * (b + (c / d));
     }
 
-    public static boolean sumBool(int one, int two){
+    public static boolean sumBool(int one, int two) {
         int s = one + two;
 
         return s >= 10 && s <= 20;
     }
 
     public static String isNegative(int z) {
-        if (z >= 0){
+        if (z >= 0) {
             return "Число положительное";
-        } else{
+        } else {
             return "Число отрицательное";
         }
     }
 
+    public static boolean checked(int num) {
+        return num < 0;
+    }
 
+    public static void printHiName(String name) {
+        System.out.printf("Привет, %s!", name);
+    }
+
+
+    public static String isLeapYear(int year) {
+        return (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) ?  "Leap" :  "Not Leap";
+    }
 }

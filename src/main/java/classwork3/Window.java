@@ -12,10 +12,11 @@ public class Window extends JFrame {
     private static final ImageIcon ICON_DEF = new ImageIcon(Objects.requireNonNull(Window.class.getResource("def.png")));
 
     private final JButton [][] MAP = new JButton[3][3];
+    private static int clickCount = 0;
 
 
     private void initMap(JPanel panel){
-        AtomicInteger clickCount = new AtomicInteger();
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 MAP[i][j] = new JButton();
@@ -25,9 +26,29 @@ public class Window extends JFrame {
                     btn.setIcon(ICON_X);
                     btn.setDisabledIcon(ICON_X);
                     btn.setEnabled(false);
-                    clickCount.getAndIncrement();
-                    if (clickCount.get() ==9){
-
+                    clickCount++;
+                    if (clickCount ==9){
+                        JFrame frame = new JFrame("Ничья");
+                        frame.setSize(300,100);
+                        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                        frame.setLocationRelativeTo(null);
+                        JPanel pan = new JPanel();
+                        JButton close = new JButton("close");
+                        close.addActionListener(e1 -> {
+                            dispose();
+                            frame.dispose();
+                        });
+                        JButton newGame = new JButton("new game");
+                        newGame.addActionListener(e1 -> {
+                            clickCount = 0;
+                            new Window();
+                            dispose();
+                            frame.dispose();
+                        });
+                        pan.add(close);
+                        pan.add(newGame);
+                        frame.add(pan);
+                        frame.setVisible(true);
                     }
                 });
                 panel.add(btn);
